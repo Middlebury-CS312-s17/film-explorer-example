@@ -26,11 +26,17 @@ font-size:smaller;
 function MovieSummary(props){
   return (
     <Summary>
-    <Title>{props.title}</Title>
+    <Title onClick={(event)=>props.onClick(props.id)} >{props.title}</Title>
     <Year>({props.year})</Year>
     <Rating>{props.rating}</Rating>
     </Summary>
   );
 }
+
+MovieSummary.propTypes = {
+  title:React.PropTypes.string.isRequired,
+  year:React.PropTypes.number.isRequired,
+  rating:React.PropTypes.number.isRequired
+};
 
 export default MovieSummary;

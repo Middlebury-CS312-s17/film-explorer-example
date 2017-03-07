@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
 import movieData from '../public/movies.json';
-import MovieSummary from './components/MovieSummary.js';
+import MovieTableContainer from './components/MovieTableContainer.js';
 
 class FilmExplorer extends Component {
   render() {
-    const movie = movieData.movies[0];
+    //const movie = movieData.movies[0];
 
     return (
       <div className="FilmExplorer">
-        <MovieSummary title={movie.title} rating={movie.vote_average} year={movie.release_date.slice(0,4)} />
-      </div>
+      <MovieTableContainer movies={movieData.movies} sortType="vote_average"/>
+        </div>
     );
   }
 }
