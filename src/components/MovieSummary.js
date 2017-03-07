@@ -36,7 +36,9 @@ function MovieSummary(props){
 MovieSummary.propTypes = {
   title:React.PropTypes.string.isRequired,
   year:React.PropTypes.number.isRequired,
-  rating:React.PropTypes.number.isRequired
+  rating:React.PropTypes.number.isRequired,
+  id:React.PropTypes.number.isRequired,
+  onClick:React.PropTypes.func.isRequired
 };
 
 export default MovieSummary;

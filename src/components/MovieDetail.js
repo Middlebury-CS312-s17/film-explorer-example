@@ -64,12 +64,13 @@ function MovieDetail(props) {
 
 
 MovieDetail.propTypes = {
-  title:React.PropTypes.string,
-  year:React.PropTypes.number,
-  rating:React.PropTypes.number,
-  description:React.PropTypes.string,
-  image:React.PropTypes.string,
-  onClick:React.PropTypes.func
+  title:React.PropTypes.string.isRequired,
+  year:React.PropTypes.number.isRequired,
+  rating:React.PropTypes.number.isRequired,
+  description:React.PropTypes.string.isRequired,
+  image:React.PropTypes.string.isRequired,
+  id: React.PropTypes.number.isRequired,
+  onClick:React.PropTypes.func.isRequired
 };
 
 
