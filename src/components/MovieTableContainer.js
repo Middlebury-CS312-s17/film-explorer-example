@@ -25,7 +25,14 @@ class MovieTableContainer extends React.Component{
   }
   render(){
     const field = this.props.sortType;
-    this.props.movies.sort((m1, m2)=>{
+    let filteredFilms = this.props.movies.filter((movie)=>{
+      let title = movie.title.toLowerCase();
+      let desc = movie.overview.toLowerCase();
+      let term = this.props.searchTerm.toLowerCase()
+      return title.includes(term) || desc.includes(term) ;
+    });
+
+    filteredFilms.sort((m1, m2)=>{
       if (m1[field] < m2[field]){
         return -1;
       }else if (m1[field] === m2[field]) {
@@ -36,13 +43,14 @@ class MovieTableContainer extends React.Component{
       }
     });
     return (
-      <MovieTable movies={this.props.movies} selectedMovies={this.state.selected} onClick={(id)=>this.handleClick(id)}/>
+      <MovieTable movies={filteredFilms} selectedMovies={this.state.selected} onClick={(id)=>this.handleClick(id)}/>
     );
   }
 }
 
 MovieTableContainer.propTypes = {
   movies:React.PropTypes.array,
+  searchTerm:React.PropTypes.string,
   sortType:React.PropTypes.string
 };
 
