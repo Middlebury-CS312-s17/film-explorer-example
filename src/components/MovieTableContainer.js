@@ -43,7 +43,7 @@ class MovieTableContainer extends React.Component{
       }
     });
     return (
-      <MovieTable movies={filteredFilms} selectedMovies={this.state.selected} onClick={(id)=>this.handleClick(id)}/>
+      <MovieTable movies={filteredFilms} selectedMovies={this.state.selected} setRatingFor={this.props.setRatingFor} onClick={(id)=>this.handleClick(id)}/>
     );
   }
 }
@@ -51,7 +51,8 @@ class MovieTableContainer extends React.Component{
 MovieTableContainer.propTypes = {
   movies:React.PropTypes.array,
   searchTerm:React.PropTypes.string,
-  sortType:React.PropTypes.string
+  sortType:React.PropTypes.string,
+  setRatingFor:React.PropTypes.func
 };
 
 export default MovieTableContainer;

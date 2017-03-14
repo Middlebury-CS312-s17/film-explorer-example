@@ -20,8 +20,10 @@ function MovieTable(props){
           key={movie.id}
           id={movie.id}
           title={movie.title}
+          rating={movie.rating}
           tmdbScore={movie.vote_average}
           year={+movie.release_date.slice(0,4)}
+          setRatingFor={props.setRatingFor}
           onClick={props.onClick} />);
     }
 
@@ -37,7 +39,8 @@ function MovieTable(props){
 MovieTable.propTypes = {
   movies:React.PropTypes.array.isRequired,
   selectedMovies:React.PropTypes.array.isRequired,
-  onClick:React.PropTypes.func.isRequired
+  onClick:React.PropTypes.func.isRequired,
+  setRatingFor:React.PropTypes.func.isRequired
 };
 
 export default MovieTable;
