@@ -30,7 +30,7 @@ const Year = styled.p`
   color:#999999;
 `;
 
-const Rating = styled.p`
+const TMDBScore = styled.p`
   margin: 0px;
   padding-left: 1em;
   font-size: smaller;
@@ -53,7 +53,7 @@ function MovieDetail(props) {
         <RightColumn>
           <Title onClick={(event)=>props.onClick(props.id)}>{props.title}</Title>
           <Year>({props.year})</Year>
-          <Rating>User Score: {props.rating}</Rating>
+          <TMDBScore>TMDB Score: {props.tmdbScore}</TMDBScore>
           <hr />
           <Description>{props.description}</Description>
         </RightColumn>
@@ -66,7 +66,7 @@ function MovieDetail(props) {
 MovieDetail.propTypes = {
   title:React.PropTypes.string.isRequired,
   year:React.PropTypes.number.isRequired,
-  rating:React.PropTypes.number.isRequired,
+  tmdbScore:React.PropTypes.number.isRequired,
   description:React.PropTypes.string.isRequired,
   image:React.PropTypes.string.isRequired,
   id: React.PropTypes.number.isRequired,

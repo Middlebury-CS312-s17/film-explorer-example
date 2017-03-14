@@ -6,9 +6,23 @@ import MovieDetail from './MovieDetail.js';
 function MovieTable(props){
   let films = props.movies.map((movie)=>{
     if (props.selectedMovies.includes(movie.id)){
-        return (<MovieDetail key={movie.id} id={movie.id} title={movie.title} rating={movie.vote_average} year={+movie.release_date.slice(0,4)} description={movie.overview} image={"http://image.tmdb.org/t/p/w185/" + movie.poster_path} onClick={props.onClick}/>);
+        return (<MovieDetail
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          tmdbScore={movie.vote_average}
+          year={+movie.release_date.slice(0,4)}
+          description={movie.overview}
+          image={"http://image.tmdb.org/t/p/w185/" + movie.poster_path}
+          onClick={props.onClick}/>);
     }else{
-        return (<MovieSummary key={movie.id} id={movie.id} title={movie.title} rating={movie.vote_average} year={+movie.release_date.slice(0,4)} onClick={props.onClick} />);
+        return (<MovieSummary
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          tmdbScore={movie.vote_average}
+          year={+movie.release_date.slice(0,4)}
+          onClick={props.onClick} />);
     }
 
   }
