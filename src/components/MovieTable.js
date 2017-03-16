@@ -11,9 +11,11 @@ function MovieTable(props){
           id={movie.id}
           title={movie.title}
           tmdbScore={movie.vote_average}
+          rating={movie.rating}
           year={+movie.release_date.slice(0,4)}
           description={movie.overview}
           image={"http://image.tmdb.org/t/p/w185/" + movie.poster_path}
+          setRatingFor={props.setRatingFor}
           onClick={props.onClick}/>);
     }else{
         return (<MovieSummary

@@ -28,7 +28,7 @@ function StarRating(props){
 
 StarRating.propTypes = {
   rating:React.PropTypes.number,
-  setRating:React.PropTypes.func
+  setRating:React.PropTypes.func.isRequired
 };
 
 

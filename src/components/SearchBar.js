@@ -29,5 +29,10 @@ function SearchBar(props){
 
 }
 
+SearchBar.propTypes = {
+  setTerm: React.PropTypes.func.isRequired,
+  setType: React.PropTypes.func.isRequired
+}
+
 
 export default SearchBar;

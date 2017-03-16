@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import StarRating from './StarRating.js';
 
 
 const Detail = styled.div`
@@ -52,6 +53,7 @@ function MovieDetail(props) {
         </LeftColumn>
         <RightColumn>
           <Title onClick={(event)=>props.onClick(props.id)}>{props.title}</Title>
+          <StarRating rating={props.rating} setRating={(rating)=>{props.setRatingFor(props.id, rating)}}/>
           <Year>({props.year})</Year>
           <TMDBScore>TMDB Score: {props.tmdbScore}</TMDBScore>
           <hr />
@@ -70,7 +72,9 @@ MovieDetail.propTypes = {
   description:React.PropTypes.string.isRequired,
   image:React.PropTypes.string.isRequired,
   id: React.PropTypes.number.isRequired,
-  onClick:React.PropTypes.func.isRequired
+  rating: React.PropTypes.number,
+  onClick:React.PropTypes.func.isRequired,
+  setRatingFor: React.PropTypes.func.isRequired
 };
 
 

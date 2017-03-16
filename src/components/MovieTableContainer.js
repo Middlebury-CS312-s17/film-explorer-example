@@ -24,35 +24,41 @@ class MovieTableContainer extends React.Component{
     this.setState({selected:selected});
   }
   render(){
-    const field = this.props.sortType;
-    let filteredFilms = this.props.movies.filter((movie)=>{
-      let title = movie.title.toLowerCase();
-      let desc = movie.overview.toLowerCase();
-      let term = this.props.searchTerm.toLowerCase()
-      return title.includes(term) || desc.includes(term) ;
-    });
+    let films = this.props.movies;
+    if (this.props.searchTerm){
+      let term = this.props.searchTerm.toLowerCase();
+      films = films.filter((movie)=>{
+        let title = movie.title.toLowerCase();
+        let desc = movie.overview.toLowerCase();
+        return title.includes(term) || desc.includes(term) ;
+      });
+    }
 
-    filteredFilms.sort((m1, m2)=>{
-      if (m1[field] < m2[field]){
-        return -1;
-      }else if (m1[field] === m2[field]) {
-        return 0;
+    if (this.props.sortType){
+      const field = this.props.sortType;
+      films.sort((m1, m2)=>{
+        if (m1[field] < m2[field]){
+          return -1;
+        }else if (m1[field] === m2[field]) {
+          return 0;
 
-      }else{
-        return 1;
-      }
-    });
+        }else{
+          return 1;
+        }
+      });
+    }
+
     return (
-      <MovieTable movies={filteredFilms} selectedMovies={this.state.selected} setRatingFor={this.props.setRatingFor} onClick={(id)=>this.handleClick(id)}/>
+      <MovieTable movies={films} selectedMovies={this.state.selected} setRatingFor={this.props.setRatingFor} onClick={(id)=>this.handleClick(id)}/>
     );
   }
 }
 
 MovieTableContainer.propTypes = {
-  movies:React.PropTypes.array,
+  movies:React.PropTypes.array.isRequired,
   searchTerm:React.PropTypes.string,
   sortType:React.PropTypes.string,
-  setRatingFor:React.PropTypes.func
+  setRatingFor:React.PropTypes.func.isRequired
 };
 
 export default MovieTableContainer;

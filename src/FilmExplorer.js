@@ -21,12 +21,9 @@ class FilmExplorer extends Component {
       })
       .then((data)=>{
         this.setState({movies: data.movies});
-        console.log('movies loaded')
       });
-      console.log('constructor finished');
   }
   setRating(filmid, rating){
-    console.log(filmid, rating);
 
     const alteredFilms = this.state.movies.map((movie)=>{
       if (movie.id === filmid){
