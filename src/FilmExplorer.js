@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import MovieTableContainer from './components/MovieTableContainer.js';
 import SearchBar from './components/SearchBar.js';
 
+const SERVER = 'http://basin.cs.middlebury.edu:4242'
+
 class FilmExplorer extends Component {
   constructor(props){
     super(props)
@@ -13,25 +15,44 @@ class FilmExplorer extends Component {
 
       //this.state.movies = movieData.movies;
 
-      fetch('movies.json')
+      fetch(SERVER + '/api/movies/')
       .then((response)=>{
         if (response.ok){
           return response.json();
         }
       })
       .then((data)=>{
-        this.setState({movies: data.movies});
+        this.setState({movies: data});
       });
   }
   setRating(filmid, rating){
+    let film = this.state.movies.find((movie)=> filmid===movie.id);
+    film = Object.assign({}, film, {rating:rating});
+    const filmStr = JSON.stringify(film);
+    const request = new Request(
+      SERVER + "/api/movies/" + filmid,
+      {
+        method:'PUT',
+        body: filmStr,
+        headers: new Headers({'Content-type': 'application/json'})
+      }
+    );
 
-    const alteredFilms = this.state.movies.map((movie)=>{
-      if (movie.id === filmid){
-        return Object.assign({}, movie, {rating:rating});
+    fetch(request)
+    .then((response)=>{
+      if (response.ok){
+        return response.json();
+      }
+    })
+    .then((newFilm)=>{
+      const alteredFilms = this.state.movies.map((movie)=>{
+      if (movie.id === newFilm.id){
+        return newFilm;
       }
       return movie;
     });
     this.setState({movies:alteredFilms});
+    });
   }
   render() {
 
